@@ -1,4 +1,5 @@
 function desglosarString(str, tipo) {
+    // no era mejor llamarla algo tipo getVowelsAndLetters?
     const vocales = ['a', 'e', 'i', 'o', 'u'];
     let count = 0;
     const lowerStr = str.toLowerCase();
@@ -29,4 +30,19 @@ function twoSum(nums, target) {
         map.set(nums[i], i);
     }
     return [];
+}
+
+function conversionRomana(romanStr) {
+    const romanValues = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 };
+    let total = 0;
+    for (let i = 0; i < romanStr.length; i++) {
+        const current = romanValues[romanStr[i]];
+        const next = romanValues[romanStr[i + 1]] || 0;
+        if (current < next) {
+            total -= current;
+        } else {
+            total += current;
+        }
+    }
+    return total;
 }

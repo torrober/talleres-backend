@@ -15,7 +15,6 @@ app.use(express.json());
 const SERVER_VERSION = "/api/v1/";
 
 app.use(SERVER_VERSION + "users", userRoutes);
-
 // FALLBACKS
 
 function routeNotFound(request: Request, response: Response) {

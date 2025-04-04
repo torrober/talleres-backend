@@ -23,7 +23,8 @@ export const userExists = (req: Request, res: Response) => {
   }
 };
 export const getUserCountByHobby = (req: Request, res: Response) => {
-  const { hobby } = req.params;
+  const { hobby } = req.body; // Cambiado de req.params a req.body
+  console.log(req.body)
   const usersWithHobby = data.filter(user => user.hobbies.includes(hobby));
   
   res.json({
@@ -42,8 +43,7 @@ export const getFreeTimeUsers = (req: Request, res: Response) => {
   }
 };
 export const addHobbyToUser = (req: Request, res: Response) => {
-  const { codigo } = req.params;
-  const { hobby } = req.body;
+  const { codigo , hobby } = req.body;
 
   const userIndex = data.findIndex(user => user.codigo === codigo);
   
@@ -82,5 +82,12 @@ export const registerUser = (req: Request, res: Response) => {
       const newUser = { codigo, nombre, apellido, hobbies };
       res.status(201).json(newUser); 
     }
+  }
+};
+export const readUsers = (req: Request, res: Response) => {
+  try {
+      res.status(200).json(data);
+  } catch (error) {
+      res.status(500).json({ message: "Error al leer los usuarios" });
   }
 };
